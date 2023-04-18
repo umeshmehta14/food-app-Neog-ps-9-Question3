@@ -6,7 +6,7 @@ const Filter = () => {
   return (
     <div>
       <h1>Filters:</h1>
-      <div class="filter-box">
+      <div className="filter-box">
         <input type="text" className='search' placeholder='Search Food Here' onChange={HandleSearch} />
         <label htmlFor="veg">
             <input type="checkbox"  value ="veg"  id="veg" onChange={HandleCheckVeg}/>

@@ -3,7 +3,7 @@
 }
 
 body{
-    background-color: rgb(96,96,96);
+    background-color: #ffece6;
     padding: 0px;
     margin: 0px;
     
@@ -11,7 +11,7 @@ body{
 
 
 nav{
-    background-color: #383838;
+    background-color: #ff6933;
     padding: 8px;
     margin: 0px;
     margin-bottom: 15px;
@@ -60,11 +60,6 @@ li a, .goTo-btn{
     height: 100vh;
     flex-direction: column;
     align-items: center;
-    background: url("https://tse4.explicit.bing.net/th?id=OIP.YUXZz3iw_Hg2wpb_vlZgsgHaEK&pid=Api&P=0");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    opacity: 0.8;
 }
 
 .home .btn{
@@ -79,14 +74,14 @@ li a, .goTo-btn{
 }
 .menu-box{
     width:20%;
-    box-shadow: 2px 2px 7px	#303030;
+    box-shadow: 2px 2px 7px	#661b00;
     display: flex;
     flex-direction: column;
     padding: 10px;
     justify-content: center;
     margin: 1rem;
     border-radius: 15px;
-    background-color: #DCDCDC;
+    background-color: #ffdacc;
     min-width: 185px;
     max-width: 230px;
 }
@@ -96,6 +91,7 @@ li a, .goTo-btn{
     max-width: 165px;
     max-height: 155px;
     min-height: 155px;
+    border-radius: 100%;
     margin: auto;
 }
 
@@ -109,7 +105,7 @@ li a, .goTo-btn{
     padding: 7px;
     margin: 4px auto;
     border-radius: 12px;
-    background-color: #383838;
+    background-color: #ff6933;
     color: white;
     font-weight: bold;
     border: none;
@@ -117,7 +113,7 @@ li a, .goTo-btn{
 }
 
 .btn:hover{
-    background-color: #383838ca;
+    background-color: #ff6933ca;
 
 }
 
@@ -144,7 +140,7 @@ li a, .goTo-btn{
 }
 .indb-box{
     width:40%;
-    box-shadow: 2px 2px 7px #303030;
+    box-shadow: 2px 2px 7px #ffdacc;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -158,4 +154,8 @@ li a, .goTo-btn{
 .indb-box img{
     width: 100%;
     height: 65%;
+}
+
+.m-0{
+    margin: 0px;
 }
