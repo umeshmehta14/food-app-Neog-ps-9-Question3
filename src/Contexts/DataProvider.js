@@ -5,10 +5,11 @@ export const DataContext = createContext();
 
 export const DataProvider = ({ children }) => {
   const [menuItem, setMenuItem] = useState([]);
-  const [menu, setMenu] = useState([]);
-  const [searchValue, setSearchValue] = useState();
-  const [searchArr, setSearchArr] = useState();
-  const [checkBox, setCheckBox] = useState({ spicy: false, veg: false });
+  const [filters, setFilters] = useState({
+    checkBox: [],
+    searchValue: "",
+    sort: null,
+  });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -17,108 +18,84 @@ export const DataProvider = ({ children }) => {
       const response = await fakeFetch("https://example.com/api/menu");
 
       setMenuItem(response.data.menu);
-      setMenu(response.data.menu);
-      setLoading(false);
     } catch (err) {
       setError(err);
+    } finally {
       setLoading(false);
     }
   };
-  const HandleSearch = (event) => {
-    const currValue = event.target.value;
-    setSearchValue(currValue);
-    const SearchedArray = menu.filter(({ name }) =>
-      name.toLowerCase().includes(currValue.toLowerCase())
+
+  const searchMenu = (event) => {
+    setFilters({ ...filters, searchValue: event.target.value });
+  };
+  const handleCheckbox = (type) => {
+    const isTypeAlreadyPresent = filters.checkBox.find(
+      (filter) => filter === type
     );
-    setMenuItem(SearchedArray);
-    setSearchArr(SearchedArray);
+    setFilters({
+      ...filters,
+      checkBox: isTypeAlreadyPresent
+        ? filters.checkBox.filter((filter) => filter !== type)
+        : [...filters.checkBox, type],
+    });
+  };
+  const handleSort = (type) => {
+    setFilters({ ...filters, sort: type });
   };
 
-  const HandleSort = (event) => {
-    setMenuItem(() =>
-      [...menuItem].sort((a, b) =>
-        event.target.value === "LowToHigh"
-          ? a.price - b.price
-          : b.price - a.price
+  const vegData =
+    filters.checkBox.length > 0
+      ? menuItem.filter((item) =>
+          filters.checkBox.every((filter) => item[filter])
+        )
+      : menuItem;
+
+  const searchedData =
+    filters.searchValue?.length > 0
+      ? vegData.filter(
+          (item) =>
+            item.name
+              .toLowerCase()
+              .includes(filters.searchValue.toLowerCase()) ||
+            item.description
+              .toLowerCase()
+              .includes(filters.searchValue.toLowerCase())
+        )
+      : vegData;
+
+  const filteredData = filters.sort
+    ? searchedData.sort((a, b) =>
+        filters.sort === "LOW_TO_HIGH" ? a.price - b.price : b.price - a.price
       )
-    );
-  };
+    : searchedData;
 
-  // HANDLING CHECKBOX VALUES
-  const HandleCheckVeg = (event) => {
-    const isChecked = event.target.checked;
-    setCheckBox({ ...checkBox, veg: isChecked });
-    let vegData;
-    if (searchValue) {
-      vegData = menuItem.filter(({ is_vegetarian }) => is_vegetarian);
-    } else {
-      vegData = menu.filter(({ is_vegetarian }) => is_vegetarian);
-    }
-
-    if (isChecked) {
-      if (checkBox.spicy) {
-        setMenuItem([...menuItem, ...vegData]);
-      } else {
-        setMenuItem(vegData);
-      }
-    } else {
-      if (checkBox.spicy) {
-        setMenuItem(() =>
-          menuItem.filter(({ is_vegetarian }) => !is_vegetarian)
-        );
-      } else {
-        if (searchValue) {
-          setMenuItem(searchArr);
-        } else {
-            setMenuItem(menu);
-        }
-      }
-    }
-  };
-
-
-  const HandleCheckSpicy = (event) => {
-    const isChecked = event.target.checked;
-    setCheckBox({ ...checkBox, spicy: isChecked });
-    let spicyData;
-    if (searchValue) {
-      spicyData = menuItem.filter(({ is_spicy }) => is_spicy);
-    } else {
-      spicyData = menu.filter(({ is_spicy }) => is_spicy);
-    }
-    if (isChecked) {
-      if (checkBox.veg) {
-        setMenuItem([...menuItem, ...spicyData]);
-      } else {
-        setMenuItem(spicyData);
-      }
-    } else {
-      if (checkBox.veg) {
-        setMenuItem(() => menuItem.filter(({ is_spicy }) => !is_spicy));
-      } else {
-        if (searchValue) {
-          setMenuItem(searchArr);
-        } else {
-          setMenuItem(menu);
-        }
-      }
-    }
-  };
   // HANDLING CART DATA
-  const HandleCart = (itemId) => {
-    const cartData = menu.map((element) =>
-      element.id === itemId ? { ...element, inCart: true } : element
+  const HandleCart = (itemId, RemoveFromCart) => {
+    const cart = menuItem.map((element) =>
+      element.id === itemId
+        ? { ...element, inCart: RemoveFromCart ? false : true, Selected: RemoveFromCart ? 0 : 1}
+        : element
     );
-    setMenuItem(cartData);
-    setMenu(cartData);
+    setMenuItem(cart);
   };
-  const RemoveFromCart = (itemId) => {
-    const RemoveCartData = menu.map((element) =>
-      element.id === itemId ? { ...element, inCart: false } : element
-    );
-    setMenuItem(RemoveCartData);
-    setMenu(RemoveCartData);
+
+
+
+  const HandleCartItemsQuantity = (itemId, decrease) => {
+      const updatedCart = menuItem.map((cartItem) =>
+        cartItem.id === itemId
+          ? {
+              ...cartItem,
+              Selected: decrease
+                ? cartItem.Selected - 1
+                : cartItem.Selected + 1
+            }
+          : cartItem
+      );
+      const filterCart = updatedCart.map((menu)=> menu.id === itemId ? {...menu, inCart: menu.Selected === 0 ? false: true} : menu)
+      setMenuItem(filterCart);
   };
+
   useEffect(() => {
     getData();
   }, []);
@@ -128,13 +105,13 @@ export const DataProvider = ({ children }) => {
         menuItem,
         loading,
         error,
-        HandleSearch,
-        searchValue,
-        HandleSort,
-        HandleCheckSpicy,
-        HandleCheckVeg,
+        filteredData,
+        filters,
+        searchMenu,
+        handleCheckbox,
+        handleSort,
         HandleCart,
-        RemoveFromCart,
+        HandleCartItemsQuantity,
       }}
     >
       {children}

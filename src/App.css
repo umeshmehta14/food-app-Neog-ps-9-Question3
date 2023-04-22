@@ -159,3 +159,19 @@ li a, .goTo-btn{
 .m-0{
     margin: 0px;
 }
+
+.w-30{
+    width: 30%;
+    background-color: #DAA520;
+    font-weight: bolder;
+    font-size: 25px;
+    margin: 2px;
+    padding: 0px;
+}
+.btn-box{
+    text-align: center;
+}
+.btn-para{
+    font-weight: bold;
+    font-size: 18px;
+}

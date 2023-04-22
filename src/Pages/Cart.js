@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { DataContext } from '../Contexts/DataProvider'
+import MenuDetails from '../Components/MenuDetails';
 
 const Cart = () => {
-    const {menuItem,RemoveFromCart} = useContext(DataContext);
+    const {menuItem} = useContext(DataContext);
     const [click, setClick] = useState(false)
     const cart = menuItem.filter(({inCart}) => inCart);
     const totalDeliveyTime = cart.reduce((acc,{delivery_time}) => acc+delivery_time,0);
-    const totalCost = cart.reduce((acc,{price}) => acc+price,0);
+    const totalCost = cart.reduce((acc,{price,Selected}) => acc+= price * Selected,0).toFixed(2);
   return (
     <div>
       <div className="container">
@@ -19,16 +20,8 @@ const Cart = () => {
       </div>
       <div className='menu-container'>
         {
-          cart.map((item)=> {
-            const {id,name,image,description,price,delivery_time} = item;
-          return <div key={id} className='menu-box'>
-            <img src={image} alt="Image Not available" />
-            <p>Name:{name}</p>
-            <p><strong>Description:</strong>{description}</p>
-            <p>Price:{price}</p>
-            <p>Delivey Time:{delivery_time}</p>
-            <button className='btn' onClick={()=>RemoveFromCart(id)}>Remove From Cart</button>
-            </div>
+          cart.map((menu)=> {
+          return <MenuDetails key={menu.id} menu={menu} isCart={true}/>
         } )
         }
       </div>
