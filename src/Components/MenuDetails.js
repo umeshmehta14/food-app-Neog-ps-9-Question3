@@ -81,9 +81,9 @@ const MenuDetails = ({ menu,isCart }) => {
     <button className="btn w-30" onClick={()=>HandleCartItemsQuantity(id,false)}>+</button>
       <button className="btn w-30" onClick={()=>HandleCartItemsQuantity(id,true)}>-</button>
       </div>
-      <button className="btn" onClick={() => HandleCart(id, true)}>
+      {Selected <= 1 ?"": <button className="btn" onClick={() => HandleCart(id, true)}>
         Remove From Cart
-      </button></>}
+      </button>}</>}
     </div>
   );
 };
