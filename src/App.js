@@ -1,15 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+
 import Home from './Pages/Home';
 import Header from './Components/Header';
-import { useContext } from 'react';
-import { DataContext } from './Contexts/DataProvider';
+import { useData } from './Contexts/DataProvider';
 import Error from './Pages/Error';
 import Menu from './Pages/Menu';
 import Cart from './Pages/Cart';
 
 function App() {
-  const {loading, error} = useContext(DataContext);
+  const {loading, error} = useData();
   return (
     <>
       {loading ? "Loading..." : <> { !error && <Header/>}

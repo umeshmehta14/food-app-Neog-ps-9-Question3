@@ -1,10 +1,10 @@
-import React, { useContext, useState } from 'react'
-import { DataContext } from '../Contexts/DataProvider'
+import React, { useState } from 'react'
+import { useData } from '../Contexts/DataProvider'
 import MenuDetails from '../Components/MenuDetails';
 
 const Cart = () => {
-    const {menuItem} = useContext(DataContext);
-    const [click, setClick] = useState(false)
+    const {menuItem} = useData();
+    const [click, setClick] = useState(false);
     const cart = menuItem.filter(({inCart}) => inCart);
     const totalDeliveyTime = cart.reduce((acc,{delivery_time}) => acc+delivery_time,0);
     const totalCost = cart.reduce((acc,{price,Selected}) => acc+= price * Selected,0).toFixed(2);

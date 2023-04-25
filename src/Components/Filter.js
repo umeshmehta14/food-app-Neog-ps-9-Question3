@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { DataContext } from '../Contexts/DataProvider'
+import React from 'react'
+import { useData } from '../Contexts/DataProvider'
 
 const Filter = () => {
-  const {searchMenu,handleSort,handleCheckbox} = useContext(DataContext);
+  const {searchMenu,handleSort,handleCheckbox} = useData();
   return (
     <div>
       <h1>Filters:</h1>

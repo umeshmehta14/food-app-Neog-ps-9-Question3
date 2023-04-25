@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
-import { DataContext } from '../Contexts/DataProvider'
+import React from 'react'
+import { useData } from '../Contexts/DataProvider'
 
 const Error = () => {
-  const {error} = useContext(DataContext);
+  const {error} = useData();
   return (
     <div className='home'>
       <h1>{error.status}{""}</h1>

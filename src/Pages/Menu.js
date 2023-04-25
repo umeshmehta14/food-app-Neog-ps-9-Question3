@@ -1,11 +1,10 @@
-import React, { useContext } from 'react'
-import { DataContext } from '../Contexts/DataProvider'
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import { useData } from '../Contexts/DataProvider'
 import Filter from '../Components/Filter';
 import MenuDetails from '../Components/MenuDetails';
 
 const Menu = () => {
-  const {filteredData} = useContext(DataContext);
+  const {filteredData} = useData();
 
   return (
     <div>

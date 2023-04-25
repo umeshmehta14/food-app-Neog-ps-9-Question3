@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { fakeFetch } from "../Data/Data";
 
 export const DataContext = createContext();
@@ -16,7 +16,6 @@ export const DataProvider = ({ children }) => {
   const getData = async () => {
     try {
       const response = await fakeFetch("https://example.com/api/menu");
-
       setMenuItem(response.data.menu);
     } catch (err) {
       setError(err);
@@ -73,27 +72,31 @@ export const DataProvider = ({ children }) => {
   const HandleCart = (itemId, RemoveFromCart) => {
     const cart = menuItem.map((element) =>
       element.id === itemId
-        ? { ...element, inCart: RemoveFromCart ? false : true, Selected: RemoveFromCart ? 0 : 1}
+        ? {
+            ...element,
+            inCart: RemoveFromCart ? false : true,
+            Selected: RemoveFromCart ? 0 : 1,
+          }
         : element
     );
     setMenuItem(cart);
   };
 
-
-
   const HandleCartItemsQuantity = (itemId, decrease) => {
-      const updatedCart = menuItem.map((cartItem) =>
-        cartItem.id === itemId
-          ? {
-              ...cartItem,
-              Selected: decrease
-                ? cartItem.Selected - 1
-                : cartItem.Selected + 1
-            }
-          : cartItem
-      );
-      const filterCart = updatedCart.map((menu)=> menu.id === itemId ? {...menu, inCart: menu.Selected === 0 ? false: true} : menu)
-      setMenuItem(filterCart);
+    const updatedCart = menuItem.map((cartItem) =>
+      cartItem.id === itemId
+        ? {
+            ...cartItem,
+            Selected: decrease ? cartItem.Selected - 1 : cartItem.Selected + 1,
+          }
+        : cartItem
+    );
+    const filterCart = updatedCart.map((menu) =>
+      menu.id === itemId
+        ? { ...menu, inCart: menu.Selected === 0 ? false : true }
+        : menu
+    );
+    setMenuItem(filterCart);
   };
 
   useEffect(() => {
@@ -118,3 +121,5 @@ export const DataProvider = ({ children }) => {
     </DataContext.Provider>
   );
 };
+
+export const useData = () => useContext(DataContext);

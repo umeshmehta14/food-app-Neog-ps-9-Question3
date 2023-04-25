@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { DataContext } from '../Contexts/DataProvider'
+import { useData } from '../Contexts/DataProvider'
 
 const Header = () => {
-  const {menuItem} = useContext(DataContext);
+  const {menuItem} = useData();
   const CartLength = menuItem.reduce((acc, {inCart}) => inCart? acc+1:acc, 0);
   const getStyle = ({isActive}) =>{
     return isActive?{

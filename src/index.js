@@ -1,21 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
 
-import {BrowserRouter as Router} from "react-router-dom";
-import { DataContext, DataProvider } from './Contexts/DataProvider';
+import { BrowserRouter as Router } from "react-router-dom";
+import { DataContext, DataProvider } from "./Contexts/DataProvider";
 
-export {DataContext};
+export { DataContext };
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
-  <DataProvider>
-
-    <App />
-  </DataProvider>
+      <DataProvider>
+        <App />
+      </DataProvider>
     </Router>
   </React.StrictMode>
 );

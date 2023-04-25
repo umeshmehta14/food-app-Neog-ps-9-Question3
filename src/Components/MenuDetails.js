@@ -1,12 +1,25 @@
-import React, { useContext } from "react";
-import { DataContext } from "../Contexts/DataProvider";
-import { NavLink } from "react-router-dom";
+import React from "react";
+import { useData } from "../Contexts/DataProvider";
+import { useNavigate } from "react-router-dom";
 
-const MenuDetails = ({ menu,isCart }) => {
-  const { HandleCart,filters:{searchValue},HandleCartItemsQuantity } = useContext(DataContext);
+const MenuDetails = ({ menu, isCart }) => {
+  const navigate = useNavigate();
+  const {
+    HandleCart,
+    filters: { searchValue },
+    HandleCartItemsQuantity,
+  } = useData();
 
-  const {id,name,image,description,price,delivery_time,inCart,Selected} = menu;
-
+  const {
+    id,
+    name,
+    image,
+    description,
+    price,
+    delivery_time,
+    inCart,
+    Selected,
+  } = menu;
 
   return (
     <div key={id} className="menu-box">
@@ -66,24 +79,47 @@ const MenuDetails = ({ menu,isCart }) => {
       </div>
       <p className="m-0">Price:{price}</p>
       <p className="m-0">Delivey Time:{delivery_time}</p>
-      {!isCart && <button className="btn" onClick={() => HandleCart(id)}>
-        {inCart ? (
-          <NavLink className="goTo-btn" to="/cart">
-            Go to Cart
-          </NavLink>
-        ) : (
-          "Add to Cart"
-        )}
-      </button>}
-      {isCart && <>
-      <div className="btn-box">
-      <p className="btn-para">x{Selected}</p>
-    <button className="btn w-30" onClick={()=>HandleCartItemsQuantity(id,false)}>+</button>
-      <button className="btn w-30" onClick={()=>HandleCartItemsQuantity(id,true)}>-</button>
-      </div>
-      {Selected <= 1 ?"": <button className="btn" onClick={() => HandleCart(id, true)}>
-        Remove From Cart
-      </button>}</>}
+      {!isCart ? inCart ? (
+        <button
+          className="btn"
+          onClick={() => {
+            HandleCart(id);
+            navigate("/cart");
+          }}
+        >
+          Go to Cart{" ->"}
+        </button>
+      ) : (
+        <button className="btn" onClick={() => HandleCart(id)}>
+          Add to Cart
+        </button>
+      ):""}
+      {isCart && (
+        <>
+          <div className="btn-box">
+            <p className="btn-para">x{Selected}</p>
+            <button
+              className="btn w-30"
+              onClick={() => HandleCartItemsQuantity(id, false)}
+            >
+              +
+            </button>
+            <button
+              className="btn w-30"
+              onClick={() => HandleCartItemsQuantity(id, true)}
+            >
+              -
+            </button>
+          </div>
+          {Selected <= 1 ? (
+            ""
+          ) : (
+            <button className="btn" onClick={() => HandleCart(id, true)}>
+              Remove From Cart
+            </button>
+          )}
+        </>
+      )}
     </div>
   );
 };
