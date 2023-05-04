@@ -1,13 +1,23 @@
 import React from 'react'
 import { useData } from '../Contexts/DataProvider'
+import { BiSearchAlt2 } from '../Icons/Icons';
 
 const Filter = () => {
-  const {searchMenu,handleSort,handleCheckbox} = useData();
+  const {menuItem,searchMenu,handleSort,handleCheckbox} = useData();
   return (
-    <div>
+    <div className='filter-container'>
       <h1>Filters:</h1>
       <div className="filter-box">
-        <input type="text" className='search' placeholder='Search Food Here' onChange={searchMenu} />
+        <label htmlFor="search">
+      <BiSearchAlt2 style={{fontSize: "22px",margin: "-5px 0px"}}/>
+    <input list='searches' id="search" className='search' name="search" placeholder='Search Food Here' onChange={searchMenu} />
+        </label>
+        
+        <datalist id="searches">
+          {
+    menuItem.map(({id,name})=> <option key={id} value={name}/> )
+          }
+  </datalist>
         <label htmlFor="veg">
             <input type="checkbox"  value ="veg"  id="veg" onChange={()=>handleCheckbox("is_vegetarian")}/>
             Veg

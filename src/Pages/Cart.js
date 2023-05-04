@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useData } from '../Contexts/DataProvider'
 import MenuDetails from '../Components/MenuDetails';
-
+import { BsCart4 } from '../Icons/Icons';
 const Cart = () => {
     const {menuItem} = useData();
     const [click, setClick] = useState(false);
@@ -12,7 +12,7 @@ const Cart = () => {
     <div>
       <div className="container">
         {cart.length > 0 ? <>
-      <h1>Cart</h1>
+      <h1>Cart <span className='icon'><BsCart4/></span></h1>
       <h3>Total Delivery Time:{totalDeliveyTime}</h3>
       <h3>Total Cost:{click ?totalCost - 5: totalCost}</h3>
       <button disabled={click} onClick={()=> setClick(true)} className="btn coupon">Apply Coupon</button>

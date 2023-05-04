@@ -51,7 +51,7 @@ export const DataProvider = ({ children }) => {
 
   const searchedData =
     filters.searchValue?.length > 0
-      ? vegData.filter(
+      ? filters.searchValue ==="All" ? vegData: vegData.filter(
           (item) =>
             item.name
               .toLowerCase()

@@ -1,16 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+
 *{
     box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
 }
 
 body{
     background-color: #ffece6;
     padding: 0px;
     margin: 0px;
-    
+    font-family: 'Crete Round', serif;
 }
 
+.loading-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.loading-img{
+    width: 10%;
+}
 
 nav{
+    position: fixed;
+    z-index: 1;
+    width: 100%;
     background-color: #ff6933;
     padding: 8px;
     margin: 0px;
@@ -36,22 +53,46 @@ li a, .goTo-btn{
 
 }
 
-.search{
-    padding: 8px;
-    border-radius: 20px;
-    border: none;
-    background-color: white;
-    box-shadow: 1px 2px 3px black;
-    color: gray;
-    font-weight: bold;
+.sm-badge{
+    position: absolute;
+    margin: 0px;
+    top: -0.3rem;
+    right: 0rem;
+    width: 18px;
+    text-align: center;
+    border-radius: 50%;
+    font-weight: bolder;
+    font-size: 14px;
+    background-color: #7428ff;
 }
 
-.search:focus{
-    outline: 2px solid rgb(51, 45, 51);
+
+
+.search{
+    height: 35px;
+    color: gray;
+    width: 137px;
+    border: none;
+    background-color: #ffe4cc;
+    font-weight: bold;
+    caret-color: orange;
 }
+
+.search:focus-visible{
+    outline: none;
+    border-bottom: 1px solid black;
+
+}
+
+.search::-webkit-calendar-picker-indicator {
+    opacity: 0;
+ }
 .container{
-    width: 90%;
+    position: relative;
+    top: 4rem;
+    width: 87%;
     margin: auto;
+    margin-left: 12rem;
 }
 
 .home{
@@ -69,17 +110,25 @@ li a, .goTo-btn{
 .menu-container{
     display: flex;
     flex-wrap: wrap;
-    width: 90%;
+    width: 100%;
+    justify-content: flex-start;
     margin: auto;
 }
+
+.container h1{
+    width: fit-content;
+    margin: auto;
+    /* margin-left: 12rem; */
+}
 .menu-box{
-    width:20%;
-    box-shadow: 2px 2px 7px	#661b00;
+    width: 20%;
+    box-shadow: 5px 6px 8px #c89a7180;
     display: flex;
     flex-direction: column;
     padding: 10px;
-    justify-content: center;
+    justify-content: space-between;
     margin: 1rem;
+    height: 25rem;
     border-radius: 15px;
     background-color: #ffdacc;
     min-width: 185px;
@@ -92,12 +141,25 @@ li a, .goTo-btn{
     max-height: 155px;
     min-height: 155px;
     border-radius: 100%;
-    margin: auto;
+    margin: 0px  auto;
+}
+
+.filter-container{
+    position: fixed;
+    background-color: #ffe4cc;
+    top: 3rem;
+    left: 0rem;
+    width: 200px;
+    height: 100vh;
+    padding-top: 1rem;
 }
 
 .filter-box{
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    height: 30%;
+    margin: 12px;
 }
 
 .btn{
@@ -154,6 +216,10 @@ li a, .goTo-btn{
 .indb-box img{
     width: 100%;
     height: 65%;
+}
+
+.icon{
+    margin: 2px 8px;
 }
 
 .m-0{

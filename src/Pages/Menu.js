@@ -7,20 +7,21 @@ const Menu = () => {
   const {filteredData} = useData();
 
   return (
-    <div>
-      <div className="container">
+    <>
         <Filter/>
+        <div className="container">
       <h1>Menu</h1>
-      </div>
       <div className='menu-container'>
         {
           filteredData.map((menu)=> {
           return <MenuDetails key={menu.id} menu={menu} isCart={false}/>
         } )
         }
-        <h1>{filteredData.length === 0 && "Item Not Found"}</h1>
+        {filteredData.length === 0 && <h1>Item Not Found</h1>}
       </div>
-    </div>
+      </div>
+
+    </>
   )
 }
 

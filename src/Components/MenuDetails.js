@@ -1,6 +1,7 @@
 import React from "react";
 import { useData } from "../Contexts/DataProvider";
 import { useNavigate } from "react-router-dom";
+import { BsCart4,AiOutlineArrowRight } from '../Icons/Icons';
 
 const MenuDetails = ({ menu, isCart }) => {
   const navigate = useNavigate();
@@ -24,7 +25,6 @@ const MenuDetails = ({ menu, isCart }) => {
   return (
     <div key={id} className="menu-box">
       <img src={image} alt="Not Available" />
-      <div>
         {searchValue ? (
           <p>
             {name
@@ -49,10 +49,9 @@ const MenuDetails = ({ menu, isCart }) => {
             <strong>{name}</strong>
           </p>
         )}
-      </div>
-      <div>
         {searchValue ? (
           <p>
+            <strong>Description:</strong>
             {description
               .split(new RegExp(`(${searchValue})`, "gi"))
               .map((substring, index) =>
@@ -76,9 +75,8 @@ const MenuDetails = ({ menu, isCart }) => {
             {description}
           </p>
         )}
-      </div>
-      <p className="m-0">Price:{price}</p>
-      <p className="m-0">Delivey Time:{delivery_time}</p>
+      <p >Price:{price} $</p>
+      <p >Delivey Time:{delivery_time}</p>
       {!isCart ? inCart ? (
         <button
           className="btn"
@@ -87,11 +85,11 @@ const MenuDetails = ({ menu, isCart }) => {
             navigate("/cart");
           }}
         >
-          Go to Cart{" ->"}
+          Go to Cart <span><AiOutlineArrowRight/></span>
         </button>
       ) : (
         <button className="btn" onClick={() => HandleCart(id)}>
-          Add to Cart
+          Add to Cart <span className="icon"><BsCart4/></span>
         </button>
       ):""}
       {isCart && (
@@ -116,6 +114,8 @@ const MenuDetails = ({ menu, isCart }) => {
           ) : (
             <button className="btn" onClick={() => HandleCart(id, true)}>
               Remove From Cart
+           <span className="icon"><BsCart4/></span>
+
             </button>
           )}
         </>
