@@ -3,7 +3,7 @@ import { useData } from "../Contexts/DataProvider";
 import { useNavigate } from "react-router-dom";
 import { BsCart4,AiOutlineArrowRight, AiOutlineHeart,AiFillHeart } from '../Icons/Icons';
 
-const MenuDetails = ({ menu, isCart }) => {
+const MenuDetails = ({ menu }) => {
   const navigate = useNavigate();
   const {
     HandleCart,
@@ -80,7 +80,7 @@ const MenuDetails = ({ menu, isCart }) => {
         )}
       <p >Price:{price} $</p>
       <p >Delivery Time:{delivery_time}</p>
-      {!isCart ? inCart ? (
+      { inCart ? (
         <button
           className="btn"
           onClick={() => {
@@ -94,34 +94,6 @@ const MenuDetails = ({ menu, isCart }) => {
         <button className="btn" onClick={() => HandleCart(id)}>
           Add to Cart <span className="icon"><BsCart4/></span>
         </button>
-      ):""}
-      {isCart && (
-        <>
-          <div className="btn-box">
-            <p className="btn-para">x{Selected}</p>
-            <button
-              className="btn w-30"
-              onClick={() => HandleCartItemsQuantity(id, false)}
-            >
-              +
-            </button>
-            <button
-              className="btn w-30"
-              onClick={() => HandleCartItemsQuantity(id, true)}
-            >
-              -
-            </button>
-          </div>
-          {Selected <= 1 ? (
-            ""
-          ) : (
-            <button className="btn" onClick={() => HandleCart(id, true)}>
-              Remove From Cart
-           <span className="icon"><BsCart4/></span>
-
-            </button>
-          )}
-        </>
       )}
     </div>
   );
