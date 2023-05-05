@@ -1,7 +1,7 @@
 import React from "react";
 import { useData } from "../Contexts/DataProvider";
 import { useNavigate } from "react-router-dom";
-import { BsCart4,AiOutlineArrowRight } from '../Icons/Icons';
+import { BsCart4,AiOutlineArrowRight, AiOutlineHeart,AiFillHeart } from '../Icons/Icons';
 
 const MenuDetails = ({ menu, isCart }) => {
   const navigate = useNavigate();
@@ -9,6 +9,7 @@ const MenuDetails = ({ menu, isCart }) => {
     HandleCart,
     filters: { searchValue },
     HandleCartItemsQuantity,
+    HandleWishList
   } = useData();
 
   const {
@@ -20,10 +21,12 @@ const MenuDetails = ({ menu, isCart }) => {
     delivery_time,
     inCart,
     Selected,
+    inWishList,
   } = menu;
 
   return (
     <div key={id} className="menu-box">
+      {inWishList ?<AiFillHeart  title="Remove WhishList" className="red heart-icon" onClick={()=>HandleWishList(id)}/> :<AiOutlineHeart className="heart-icon"  title="WhishList" onClick={()=>HandleWishList(id)}/>}
       <img src={image} alt="Not Available" />
         {searchValue ? (
           <p>
@@ -65,7 +68,7 @@ const MenuDetails = ({ menu, isCart }) => {
                     {substring}
                   </em>
                 ) : (
-                  <strong key={index}>{substring}</strong>
+                  <span key={index}>{substring}</span>
                 )
               )}
           </p>
@@ -76,7 +79,7 @@ const MenuDetails = ({ menu, isCart }) => {
           </p>
         )}
       <p >Price:{price} $</p>
-      <p >Delivey Time:{delivery_time}</p>
+      <p >Delivery Time:{delivery_time}</p>
       {!isCart ? inCart ? (
         <button
           className="btn"

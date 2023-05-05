@@ -1,30 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Crete+Round&display=swap');
 
-*{
+* {
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
 }
 
-body{
+body {
     background-color: #ffece6;
     padding: 0px;
     margin: 0px;
     font-family: 'Crete Round', serif;
 }
 
-.loading-box{
+.logo-box {
+    cursor: pointer;
+}
+
+.logo {
+    width: 35px;
+    position: absolute;
+    margin-left: 2rem;
+}
+
+.logo-name {
+    position: absolute;
+    top: 0.5rem;
+    margin-left: 4.5rem;
+    font-size: 20px;
+    font-family: 'Cedarville Cursive', cursive;
+}
+
+.loading-box {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
 
-.loading-img{
+.loading-img {
     width: 10%;
 }
 
-nav{
+nav {
     position: fixed;
     z-index: 1;
     width: 100%;
@@ -35,25 +53,31 @@ nav{
     box-shadow: 1px 1px 10px rgb(50, 44, 50);
 }
 
-h1{
+h1 {
     margin: 12px;
 }
 
-nav ul{
+nav ul {
     list-style: none;
     display: flex;
     margin: 0px;
 
-    justify-content: space-evenly;
+    justify-content: flex-end;
     font-size: 24px;
 }
-li a, .goTo-btn{
+
+ul li {
+    margin: 0px 30px;
+}
+
+li a,
+.goTo-btn {
     color: white;
     text-decoration: none;
 
 }
 
-.sm-badge{
+.sm-badge {
     position: absolute;
     margin: 0px;
     top: -0.3rem;
@@ -67,47 +91,52 @@ li a, .goTo-btn{
 }
 
 
-
-.search{
-    height: 35px;
-    color: gray;
-    width: 137px;
-    border: none;
-    background-color: #ffe4cc;
-    font-weight: bold;
-    caret-color: orange;
-}
-
-.search:focus-visible{
-    outline: none;
-    border-bottom: 1px solid black;
-
-}
-
-.search::-webkit-calendar-picker-indicator {
-    opacity: 0;
- }
-.container{
+.container {
     position: relative;
-    top: 4rem;
-    width: 87%;
+    top: 3rem;
+    width: 90%;
     margin: auto;
-    margin-left: 12rem;
 }
 
-.home{
+.side-box {
+    width: 87%;
+    margin-left: 9.5rem;
+
+}
+
+.main-box {
+    position: relative;
+    background: url(https://wallpaperaccess.com/full/767277.jpg);
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main-box::before {
+    content: '';
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.6;
+}
+
+
+.home {
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 20vh;
     flex-direction: column;
     align-items: center;
 }
 
-.home .btn{
+.home .btn {
     width: 20%;
 }
 
-.menu-container{
+.menu-container {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
@@ -115,12 +144,13 @@ li a, .goTo-btn{
     margin: auto;
 }
 
-.container h1{
+.container h1 {
     width: fit-content;
     margin: auto;
     /* margin-left: 12rem; */
 }
-.menu-box{
+
+.menu-box {
     width: 20%;
     box-shadow: 5px 6px 8px #c89a7180;
     display: flex;
@@ -131,30 +161,31 @@ li a, .goTo-btn{
     height: 25rem;
     border-radius: 15px;
     background-color: #ffdacc;
-    min-width: 185px;
+    min-width: 210px;
     max-width: 230px;
 }
-.menu-box img{
+
+.menu-box img {
     width: 100%;
     height: 60%;
     max-width: 165px;
     max-height: 155px;
     min-height: 155px;
     border-radius: 100%;
-    margin: 0px  auto;
+    margin: 0px auto;
 }
 
-.filter-container{
+.filter-container {
     position: fixed;
     background-color: #ffe4cc;
     top: 3rem;
     left: 0rem;
-    width: 200px;
+    width: 150px;
     height: 100vh;
     padding-top: 1rem;
 }
 
-.filter-box{
+.filter-box {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
@@ -162,7 +193,27 @@ li a, .goTo-btn{
     margin: 12px;
 }
 
-.btn{
+.search {
+    height: 35px;
+    color: gray;
+    width: 100px;
+    border: none;
+    background-color: #ffe4cc;
+    font-weight: bold;
+    caret-color: orange;
+}
+
+.search:focus-visible {
+    outline: none;
+    border-bottom: 1px solid black;
+
+}
+
+.search::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.btn {
     width: 60%;
     padding: 7px;
     margin: 4px auto;
@@ -174,59 +225,40 @@ li a, .goTo-btn{
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     background-color: #ff6933ca;
 
 }
 
-.goTo-btn{
+.goTo-btn {
     color: white;
     text-decoration: none;
 }
 
-.coupon{
+.coupon {
     width: fit-content;
     padding: 10px;
 }
 
 .coupon[disabled] {
     background-color: gray;
-    cursor:not-allowed;
+    cursor: not-allowed;
 }
 
-.ind-videoContainer{
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    margin: auto;
-}
-.indb-box{
-    width:40%;
-    box-shadow: 2px 2px 7px #ffdacc;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10px;
-    justify-content: center;
-    height: 90vh;
-    margin: 1rem;
-    border-radius: 15px;
-    background-color: #DCDCDC;
-}
-.indb-box img{
-    width: 100%;
-    height: 65%;
-}
-
-.icon{
+.icon {
     margin: 2px 8px;
 }
 
-.m-0{
+.heart-icon {
+    position: absolute;
+    cursor: pointer;
+}
+
+.m-0 {
     margin: 0px;
 }
 
-.w-30{
+.w-30 {
     width: 30%;
     background-color: #DAA520;
     font-weight: bolder;
@@ -234,10 +266,41 @@ li a, .goTo-btn{
     margin: 2px;
     padding: 0px;
 }
-.btn-box{
+
+.btn-box {
     text-align: center;
 }
-.btn-para{
+
+.btn-para {
     font-weight: bold;
     font-size: 18px;
 }
+
+.red {
+    color: red;
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        width: 35px;
+        position: absolute;
+        margin-left: 0rem;
+    }
+    .logo-name {
+        position: absolute;
+        top: 0.5rem;
+        margin-left: 2rem;
+        font-size: 16px;
+        font-family: 'Cedarville Cursive', cursive;
+    }
+    nav ul {
+        font-size: 20px;
+    }
+    ul li {
+        margin: 0px 14px;
+    }
+    .side-box {
+        width: fit-content;
+        margin-left: 9.5rem;
+    }
+  }

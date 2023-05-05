@@ -68,6 +68,19 @@ export const DataProvider = ({ children }) => {
       )
     : searchedData;
 
+    // HANDLING CART DATA
+  const HandleWishList = (itemId) => {
+    const wishList = menuItem.map((element) =>
+      element.id === itemId
+        ? {
+            ...element,
+            inWishList: element.inWishList ? !element.inWishList: true,
+          }
+        : element
+    );
+    setMenuItem(wishList);
+  };
+
   // HANDLING CART DATA
   const HandleCart = (itemId, RemoveFromCart) => {
     const cart = menuItem.map((element) =>
@@ -115,6 +128,7 @@ export const DataProvider = ({ children }) => {
         handleSort,
         HandleCart,
         HandleCartItemsQuantity,
+        HandleWishList
       }}
     >
       {children}

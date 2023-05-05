@@ -9,7 +9,7 @@ const Menu = () => {
   return (
     <>
         <Filter/>
-        <div className="container">
+        <div className="container side-box">
       <h1>Menu</h1>
       <div className='menu-container'>
         {

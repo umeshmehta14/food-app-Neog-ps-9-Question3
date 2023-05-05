@@ -7,6 +7,7 @@ import { useData } from './Contexts/DataProvider';
 import Error from './Pages/Error';
 import Menu from './Pages/Menu';
 import Cart from './Pages/Cart';
+import WhishList from './Pages/WhishList';
 
 function App() {
   const {loading, error} = useData();
@@ -18,6 +19,7 @@ function App() {
         {error ? <Route path="/" element={<Error/>}/>:<Route path="/" element={<Home/>}/>   }
         <Route path="/menu" element={<Menu/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/wishlist" element={<WhishList/>}/>
       </Routes></>}
     </>
   );

@@ -16,8 +16,7 @@ const Cart = () => {
       <h3>Total Delivery Time:{totalDeliveyTime}</h3>
       <h3>Total Cost:{click ?totalCost - 5: totalCost}</h3>
       <button disabled={click} onClick={()=> setClick(true)} className="btn coupon">Apply Coupon</button>
-        </>:<h1>Your Cart is Empty Buy Some Food</h1>}
-      </div>
+        </>:<h1>Your Cart is Empty 😑</h1>}
       <div className='menu-container'>
         {
           cart.map((menu)=> {
@@ -26,6 +25,8 @@ const Cart = () => {
         }
       </div>
     </div>
+    </div>
+
   )
 }
 
