@@ -84,9 +84,7 @@ const Cart = () => {
                       </span>
                     </div>
 
-                    {Selected <= 1 ? (
-                      ""
-                    ) : (
+                    
                       <button
                         className="btn w-90"
                         onClick={() => HandleCart(id, true)}
@@ -96,7 +94,7 @@ const Cart = () => {
                           <BsCart4 />
                         </span>
                       </button>
-                    )}
+                    
                   </div>
                 </div>
               );
