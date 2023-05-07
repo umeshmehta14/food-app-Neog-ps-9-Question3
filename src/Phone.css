@@ -52,6 +52,7 @@
 
     .cart-details {
         width: 40%;
+        max-height: auto;
         padding: 0.5rem;
         min-width: 365px;
         margin: auto;
