@@ -32,6 +32,20 @@ const MenuDetails = ({ menu }) => {
   const notify = (msg) => toast(msg);
 
   return (
+    <>
+    <ToastContainer
+        position="bottom-right"
+        autoClose={1000}
+        limit={5}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
     <div key={id} className="menu-box">
       {inWishList ? (
         <AiFillHeart
@@ -129,21 +143,9 @@ const MenuDetails = ({ menu }) => {
           </span>
         </button>
       )}
-      <ToastContainer
-        position="bottom-right"
-        autoClose={1000}
-        limit={5}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover={false}
-        theme="light"
-      />
+      
     </div>
-  );
+  </>);
 };
 
 export default MenuDetails;

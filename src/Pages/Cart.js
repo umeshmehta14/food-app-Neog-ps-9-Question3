@@ -183,7 +183,7 @@ const Cart = () => {
                   }}
                   className="btn coupon"
                 >
-                  Apply Coupon
+                  {click ? "Coupon Applied":"Apply Coupon"}
                 </button>
                 <button
                   className="btn"
