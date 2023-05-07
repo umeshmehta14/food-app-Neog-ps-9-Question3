@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import './Phone.css';
 
 import Home from './Pages/Home';
 import Header from './Components/Header';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/wishlist" element={<WhishList/>}/>
       </Routes></>}
+      
     </>
   );
 }

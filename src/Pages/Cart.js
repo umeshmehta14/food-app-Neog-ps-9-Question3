@@ -1,21 +1,68 @@
 import React, { useState } from "react";
 import { useData } from "../Contexts/DataProvider";
-// import MenuDetails from "../Components/MenuDetails";
-import { BsCart4, AiOutlineHeart, AiFillHeart } from "../Icons/Icons";
+import {
+  BsCart4,
+  AiOutlineHeart,
+  AiFillHeart,
+  BsCartX,
+  RiDeleteBin5Line,
+} from "../Icons/Icons";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
   const [click, setClick] = useState(false);
-  const { menuItem, HandleCart, HandleCartItemsQuantity, HandleWishList } =
-    useData();
+  const {
+    menuItem,
+    HandleCart,
+    HandleCartItemsQuantity,
+    HandleWishList,
+    ClearCart,
+  } = useData();
   const cart = menuItem.filter(({ inCart }) => inCart);
   const totalDeliveryTime = cart.reduce(
     (acc, { delivery_time }) => acc + delivery_time,
     0
   );
-  const totalCost = cart
-    .reduce((acc, { price, Selected }) => (acc += price * Selected), 0);
+  const totalCost = cart.reduce(
+    (acc, { price, Selected }) => (acc += price * Selected),
+    0
+  );
+  const notifyA = (msg) => toast(msg, { containerId: "A" });
+  const notifyB = (msg) => toast(msg, { containerId: "B" });
+
   return (
-    <div>
+    <>
+      <ToastContainer
+        enableMultiContainer
+        containerId={"A"}
+        position="bottom-right"
+        autoClose={1000}
+        limit={5}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover={false}
+        theme="light"
+      />
+      <ToastContainer
+        enableMultiContainer
+        containerId={"B"}
+        position="top-center"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <div className="container">
         {cart.length > 0 ? (
           <h1>
@@ -25,7 +72,12 @@ const Cart = () => {
             </span>
           </h1>
         ) : (
-          <h1>Your Cart is Empty 😑</h1>
+          <>
+            <div className="cart-page-logo">
+              <BsCartX />
+            </div>
+            <h1>Your cart is currently empty.</h1>
+          </>
         )}
         <div className="cart-container">
           <div className="cart-details">
@@ -46,13 +98,19 @@ const Cart = () => {
                       <AiFillHeart
                         title="Remove WhishList"
                         className="red cart-heart-icon"
-                        onClick={() => HandleWishList(id)}
+                        onClick={() => {
+                          HandleWishList(id);
+                          notifyA("Removed From WhishList");
+                        }}
                       />
                     ) : (
                       <AiOutlineHeart
                         className="cart-heart-icon"
                         title="WhishList"
-                        onClick={() => HandleWishList(id)}
+                        onClick={() => {
+                          HandleWishList(id);
+                          notifyA("Added to WhishList");
+                        }}
                       />
                     )}
                     <img src={image} alt="Not Available" />
@@ -62,8 +120,12 @@ const Cart = () => {
                     <p>
                       <strong>{name}</strong>
                     </p>
-                    <p><strong>Price:</strong>$ {price}</p>
-                    <p><strong>Delivery Time:</strong> {delivery_time}</p>
+                    <p>
+                      <strong>Price:</strong>$ {price}
+                    </p>
+                    <p>
+                      <strong>Delivery Time:</strong> {delivery_time}
+                    </p>
                     <div className="quantity-box">
                       <strong>Quantity:</strong>
                       <span className="btn-box">
@@ -84,17 +146,17 @@ const Cart = () => {
                       </span>
                     </div>
 
-                    
-                      <button
-                        className="btn w-90"
-                        onClick={() => HandleCart(id, true)}
-                      >
-                        Remove From Cart
-                        <span className="icon">
-                          <BsCart4 />
-                        </span>
-                      </button>
-                    
+                    <button
+                      className="remove-btn btn"
+                      onClick={() => {
+                        notifyA("Removed From Cart");
+                        HandleCart(id, true);
+                      }}
+                    >
+                      <span className="icon">
+                        <RiDeleteBin5Line />
+                      </span>
+                    </button>
                   </div>
                 </div>
               );
@@ -104,19 +166,31 @@ const Cart = () => {
             {cart.length > 0 ? (
               <>
                 <h2>Price Details</h2>
-                <h3>Total Delivery Time :  {totalDeliveryTime} min.</h3>
-                {click ? <h3>You Saved :  $5</h3> : ""}
-                <h3>Delivery Charge :  $ 40</h3>
-                <h3>Total Cost :  $ {click ? (+ totalCost + 35 ).toFixed(2) : (+totalCost + 40).toFixed(2)}</h3>
+                <h3>Total Delivery Time : {totalDeliveryTime} min.</h3>
+                {click ? <h3>You Saved : $5</h3> : ""}
+                <h3>Delivery Charge : $ 40</h3>
+                <h3>
+                  Total Cost : ${" "}
+                  {click
+                    ? (+totalCost + 35).toFixed(2)
+                    : (+totalCost + 40).toFixed(2)}
+                </h3>
                 <button
                   disabled={click}
-                  onClick={() => setClick(true)}
+                  onClick={() => {
+                    setClick(true);
+                    notifyA("Coupon Applied");
+                  }}
                   className="btn coupon"
                 >
                   Apply Coupon
                 </button>
                 <button
                   className="btn"
+                  onClick={() => {
+                    ClearCart();
+                    notifyB("Thank You For Ordering");
+                  }}
                 >
                   Place Order
                 </button>
@@ -127,7 +201,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
