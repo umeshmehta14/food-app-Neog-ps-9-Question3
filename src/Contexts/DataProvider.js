@@ -112,6 +112,11 @@ export const DataProvider = ({ children }) => {
     setMenuItem(filterCart);
   };
 
+  const ClearCart = ()=>{
+    const clearedMenu = menuItem.map((menu) => menu.inCart ? {...menu, inCart:false}:menu );
+    setMenuItem(clearedMenu);
+  }
+
   useEffect(() => {
     getData();
   }, []);
@@ -128,7 +133,8 @@ export const DataProvider = ({ children }) => {
         handleSort,
         HandleCart,
         HandleCartItemsQuantity,
-        HandleWishList
+        HandleWishList,
+        ClearCart,
       }}
     >
       {children}

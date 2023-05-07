@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Crete+Round&display=swap');
+:root {
+    --primary-color: #f5c44a
+}
+
 
 * {
     box-sizing: border-box;
@@ -7,7 +11,6 @@
 }
 
 body {
-    background-color: #ffece6;
     padding: 0px;
     margin: 0px;
     font-family: 'Crete Round', serif;
@@ -24,11 +27,11 @@ body {
 }
 
 .logo-name {
-    position: absolute;
-    top: 0.5rem;
-    margin-left: 4.5rem;
+    margin-left: 1.5rem;
     font-size: 20px;
     font-family: 'Cedarville Cursive', cursive;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .loading-box {
@@ -42,11 +45,14 @@ body {
     width: 10%;
 }
 
-nav {
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: fixed;
     z-index: 1;
     width: 100%;
-    background-color: #ff6933;
+    background-color: white;
     padding: 8px;
     margin: 0px;
     margin-bottom: 15px;
@@ -57,13 +63,12 @@ h1 {
     margin: 12px;
 }
 
-nav ul {
+.navbar ul {
     list-style: none;
     display: flex;
     margin: 0px;
-
     justify-content: flex-end;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 ul li {
@@ -72,9 +77,12 @@ ul li {
 
 li a,
 .goTo-btn {
-    color: white;
+    color: black;
     text-decoration: none;
 
+}
+.h-yellow:hover {
+    color: var(--primary-color);
 }
 
 .sm-badge {
@@ -87,13 +95,14 @@ li a,
     border-radius: 50%;
     font-weight: bolder;
     font-size: 14px;
-    background-color: #7428ff;
+    background-color: var(--primary-color);
 }
+
 
 
 .container {
     position: relative;
-    top: 3rem;
+    top: 4rem;
     width: 90%;
     margin: auto;
 }
@@ -101,12 +110,12 @@ li a,
 .side-box {
     width: 87%;
     margin-left: 9.5rem;
-
 }
 
 .main-box {
     position: relative;
-    background: url(https://wallpaperaccess.com/full/767277.jpg);
+    background: url("https://wallpaperbat.com/img/293602-wallpaper-tomato-hamburger-patty-sandwich-fast-food-bun.jpg");
+    background-color: transparent;
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
@@ -120,24 +129,73 @@ li a,
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0.6;
+    opacity: 0.3;
 }
 
 
 .home {
     display: flex;
-    width: 80%;
-    height: 20vh;
+    width: 50%;
+    height: 50vh;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: 4rem;
+    position: relative;
+    top: 5rem;
 }
 
-.home *{
-    margin: 12px auto;
+.home * {
+    margin: 12px 0px;
+    color: white;
+    text-shadow: 4px 3px 3px black;
+
 }
 
 .home .btn {
-    width: 20%;
+    width: auto;
+    padding: 12px 28px;
+    margin: 4px;
+    border-radius: 6px;
+    background-color: var(--primary-color);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    text-shadow: none;
+
+}
+
+.home h2 {
+    font-size: 60px;
+    line-height: 62px;
+}
+
+.home h3{
+    color: #00a149;
+    font-size: 40px;
+    line-height: 55px;
+}
+.home h3 div{
+    display: inline-block;
+    color: rgba(128, 128, 128, 0.543);
+    padding: 0px 0px 25px;
+    font-size: 18px;
+
+}
+
+.home h4 {
+    font-size: 28px;
+    color: #00a149;
+}
+
+.home h2 span {
+    color: var(--primary-color);
+}
+
+.home div{
+    color: #fff;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: .45px;
 }
 
 .menu-container {
@@ -170,7 +228,7 @@ li a,
 }
 
 .menu-box:hover {
-    box-shadow: 0px 6px 8px #c89a7180;
+    box-shadow: 0px 1px 8px #c3c3c3;
 }
 
 .menu-box img {
@@ -185,7 +243,7 @@ li a,
 
 .filter-container {
     position: fixed;
-    background-color: #ffe4cc;
+    background-color: #fff8e8;
     top: 3rem;
     left: 0rem;
     width: 150px;
@@ -206,7 +264,7 @@ li a,
     color: gray;
     width: 100px;
     border: none;
-    background-color: #ffe4cc;
+    background-color: #fff8e8;
     font-weight: bold;
     caret-color: orange;
 }
@@ -226,15 +284,16 @@ li a,
     padding: 7px;
     margin: 4px auto;
     border-radius: 12px;
-    background-color: #ff6933;
-    color: white;
+    background-color: var(--primary-color);
+
     font-weight: bold;
     border: none;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #ff6933ca;
+    background-color: #eeac00;
+    color: white;
 
 }
 
@@ -246,11 +305,17 @@ li a,
 .coupon {
     width: fit-content;
     padding: 10px;
+    border-bottom: none;
+    margin: 1rem 0.5rem;
+
 }
 
 .coupon[disabled] {
     background-color: gray;
     cursor: not-allowed;
+}
+.navbar .icon{
+    font-size: 20px;
 }
 
 .icon {
@@ -275,12 +340,12 @@ li a,
     padding: 0px;
 }
 
-.quantity-box{
+.quantity-box {
     margin: 0.5rem 7px;
     width: fit-content;
 }
 
-.quantity-btn{
+.quantity-btn {
     width: 28px;
     background: none;
     font-size: 18px;
@@ -288,17 +353,30 @@ li a,
     border: none;
 }
 
-.br{
+.br {
     border-right: 1px solid black;
 
 }
-.bl{
+
+.bl {
     border-left: 1px solid black;
 
 }
 
-.w-90{
-    width: 95%;
+.remove-btn {
+    width: 22%;
+    font-size: 20px;
+    padding: 6px 0px;
+    margin: 4px auto;
+    border-radius: 12px;
+    background-color: var(--primary-color);
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
 }
 
 /* Cart CSS */
@@ -339,12 +417,14 @@ li a,
     height: 150px;
     margin: 0rem;
 }
-.cart-right{
+
+.cart-right {
     display: flex;
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
 }
+
 .cart-details {
     width: 40%;
     max-height: 80vh;
@@ -362,78 +442,34 @@ li a,
 .cart-price-box {
     width: 300px;
     margin: auto;
-    }
-.cart-price-box *{
+}
+
+.cart-price-box  h2 ,.cart-price-box h3 {
     margin: 1rem 0.5rem;
     border-bottom: 1px solid black;
-    }
+}
 
-    .cart-heart-icon{
-        position: absolute;
+.cart-heart-icon {
+    position: absolute;
     cursor: pointer;
     top: 0.2rem;
     right: 0.4rem;
-    }
+}
+.cart-page-logo{
+    font-size: 10rem;
+    width: fit-content;
+    margin: auto;
+    color: gray;
+}
 
-@media screen and (max-width: 480px) {
-    .main-box{
-        background: url("https://cuteiphonewallpaper.com/wp-content/uploads/2020/09/Food-Picture-iPhone-Wallpaper-Design.jpg");
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-    .logo {
-        width: 35px;
-        position: absolute;
-        margin-left: 0rem;
-    }
+.m-auto{
+    margin: auto;
+    width: 20%;
+    min-width: 135px;
+    text-align: center;
 
-    .logo-name {
-        position: absolute;
-        top: 0.5rem;
-        margin-left: 2rem;
-        font-size: 16px;
-        font-family: 'Cedarville Cursive', cursive;
-    }
-    .home .btn {
-        width: 50%;
-    }
+}
 
-    .menu-box {
-        box-shadow: 0px 6px 8px #c89a7180;
-
-    }
-
-    nav ul {
-        font-size: 20px;
-    }
-
-    ul li {
-        margin: 0px 14px;
-    }
-
-    .side-box {
-        width: fit-content;
-        margin-left: 9.5rem;
-    }
-    .cart-details {
-        width: 40%;
-        max-height: 80vh;
-        padding: 0.5rem;
-        overflow: auto;
-        min-width: 365px;
-        margin: auto;
-    }
-    .menu-box-horizontal {
-        display: flex;
-        position: relative;
-        width: 100%;
-        margin: 1rem auto;
-        padding: 0.5rem;
-        box-shadow: 0px 6px 8px #c89a7180;
-    }
-    .btn-box{
-        text-align: center;
-        margin: 0px 0.1rem;
-        border: 2px solid black;
-    }
+.wishlist-empty h1{
+    margin: 0rem auto 1rem;
 }

@@ -1,0 +1,76 @@
+
+@media screen and (max-width: 480px) {
+    .main-box {
+        background: url("https://tse3.mm.bing.net/th?id=OIP.yY2qC2rCmhCp88csvE62iAHaNK&pid=Api&P=0");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .logo {
+        width: 35px;
+        position: absolute;
+        margin-left: 0rem;
+    }
+
+    .logo-name {
+        margin-left: 0.8rem;
+        font-size: 16px;
+        font-family: 'Cedarville Cursive', cursive;
+    }
+    .home{
+        display: flex;
+        width: 90%;
+        height: 50vh;
+        flex-direction: column;
+        align-items: flex-start;
+        margin: auto;
+        position: relative;
+        top: 5rem;
+    }
+
+    .home .btn {
+        width: 50%;
+    }
+
+    .menu-box {
+        box-shadow: 0px 6px 8px #c89a7180;
+
+    }
+
+    nav ul {
+        font-size: 20px;
+    }
+
+    ul li {
+        margin: 0px 14px;
+    }
+
+    .side-box {
+        width: fit-content;
+        margin-left: 9.5rem;
+    }
+
+    .cart-details {
+        width: 40%;
+        max-height: none;
+        padding: 0.5rem;
+        overflow: none;
+        min-width: 365px;
+        margin: auto;
+    }
+
+    .menu-box-horizontal {
+        display: flex;
+        position: relative;
+        width: 100%;
+        margin: 1rem auto;
+        padding: 0.5rem;
+        box-shadow: 0px 6px 8px #c89a7180;
+    }
+
+    .btn-box {
+        text-align: center;
+        margin: 0px 0.1rem;
+        border: 2px solid black;
+    }
+}
